@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Project } from '../models/project.model';
+import { PageContent, Project } from '../models/project.model';
 import { environment } from '../../../environments/environment';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { of } from 'rxjs';
@@ -10,6 +10,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 })
 export class ProjectsService {
   url = environment.firebase.databaseURL;
+  pageContent: PageContent;
 
   constructor(private db: AngularFireDatabase, private afAuth: AngularFireAuth) { }
 
@@ -29,6 +30,13 @@ export class ProjectsService {
     projects.forEach( (project: Project) => {
       this.db.list(`projects/${userId}`).push(project);
     });
+  }
+
+  // SR New To Test:
+  addPageContent(page: PageContent) {
+    const userId = this.userId;
+    const pages = this.db.list(`pagecontext/${userId}`);
+    return pages.push(page);
   }
 
   get(userId: string) {
