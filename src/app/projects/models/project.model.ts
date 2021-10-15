@@ -4,3 +4,10 @@ export interface Project {
   description?: string;
   photoUrl?: string;
 }
+
+export interface PageContent {
+  pageId?: number;
+  pageTitle?: string;
+  sortOrder?: number;
+  content?: string;
+}
