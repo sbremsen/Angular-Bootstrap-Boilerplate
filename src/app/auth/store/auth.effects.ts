@@ -230,4 +230,33 @@ export class AuthEffects {
   init$: Observable<any> = defer(() => {
     return of(new auth.GetUser());
   });
+
+  // @Effect()
+  // getAllUser$ = this.actions$.pipe(
+  //   ofType(auth.AuthActionTypes.GET_ALL_USERS),
+  //   map( (action: auth.GetAllUsersSuccess) => action.payload),
+  //   switchMap(() => this.authService.getAllUsers()
+  //     .pipe(
+  //       take(1),
+  //       map((authData: any) => {
+  //         if (authData) {
+  //           const users = authData;
+  //           console.log(users);
+            // const user = {
+            //   uid: authData.uid,
+            //   displayName: authData.displayName,
+            //   email: authData.email,
+            //   providerId: authData.providerData[0].providerId,
+            //   photoUrl: authData.photoURL,
+            // };
+            // return new auth.LoginSuccess({ user });
+  //           return new auth.AuthActionTypes.GET_ALL_USERS_SUCCESS({ users });
+  //         } else {
+  //           return new auth.LoginFailed();
+  //         }
+  //       }),
+  //       catchError(error => of(new auth.AuthError({ error })))
+  //     )
+  //   )
+  // );
 }

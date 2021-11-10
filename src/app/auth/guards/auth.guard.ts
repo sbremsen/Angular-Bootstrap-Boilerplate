@@ -3,6 +3,7 @@ import { CanActivate, Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { switchMap, catchError, take } from 'rxjs/operators';
 import { AuthService } from '../services/auth.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,11 @@ export class AuthGuard implements CanActivate {
         switchMap((user) => {
           if (!user) {
             this.router.navigateByUrl('/login');
+            return of(false);
+          }
+          debugger;
+          // canActivate should be false for guest user
+          if (user.uid === environment.guestUid) {
             return of(false);
           }
           return of(true);

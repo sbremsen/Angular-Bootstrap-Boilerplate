@@ -6,6 +6,7 @@ import * as actions from './../../store/auth.actions';
 import { Observable } from 'rxjs';
 import { getError } from '../../store/auth.selectors';
 import { map } from 'rxjs/operators';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -45,6 +46,15 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       this.store.dispatch(new actions.LoginRequested(this.loginForm.value));
     }
+  }
+
+  onGuestLogin() {
+    debugger;
+    this.loginForm.setValue({
+      email: environment.guestLoginEmail, 
+      password: environment.guestLoginPwd
+    });
+    this.store.dispatch(new actions.LoginRequested(this.loginForm.value));
   }
 
   onGoogleLogin(authProvider: string) {

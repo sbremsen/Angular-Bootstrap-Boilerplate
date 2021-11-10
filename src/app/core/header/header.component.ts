@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { User } from '../../auth/models/user.model';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-header',
@@ -21,6 +22,14 @@ export class HeaderComponent implements OnInit {
 
   onLogout() {
     this.logout.emit(this.user);
+  }
+
+  displayProfile() {
+    debugger;
+    if (this.user.uid === environment.guestUid) {
+      return false;
+    }
+    return true;
   }
 
 }

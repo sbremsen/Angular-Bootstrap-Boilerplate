@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { from } from 'rxjs';
+import { from, Observable } from 'rxjs';
 import * as firebase from 'firebase/app';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { User } from '../models/user.model';
@@ -70,5 +70,10 @@ export class AuthService {
 
   getCurrentUser() {
     return this.afAuth.auth.currentUser;
+  }
+
+  getAllUsers(): Observable<any> {
+    // const value = this.db.object('users/').valueChanges()
+    return this.db.object('users/').valueChanges();
   }
 }

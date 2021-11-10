@@ -26,7 +26,11 @@ export enum AuthActionTypes {
 
   GET_USER = '[Auth] GET User',
 
-  AUTH_ERROR = '[Auth] Error'
+  AUTH_ERROR = '[Auth] Error',
+
+  GET_ALL_USERS = '[Auth] GET All Users',
+
+  GET_ALL_USERS_SUCCESS = '[Auth] GET All Users Success'
 }
 
 export class RegisterRequested implements Action {
@@ -123,6 +127,17 @@ export class AuthError implements Action {
   constructor(public payload: { error: any }) {}
 }
 
+export class GetAllUsers implements Action {
+  readonly type = AuthActionTypes.GET_ALL_USERS;
+
+}
+
+export class GetAllUsersSuccess implements Action {
+  readonly type = AuthActionTypes.GET_ALL_USERS_SUCCESS;
+
+  constructor(public payload: { users: User[] }) {}
+}
+
 export type AuthAction =
   | RegisterRequested
   | RegisterCompleted
@@ -140,4 +155,5 @@ export type AuthAction =
   | CheckUserRole
   | UpdateUserRole
   | GetUser
-  | AuthError;
+  | AuthError
+  | GetAllUsers;
